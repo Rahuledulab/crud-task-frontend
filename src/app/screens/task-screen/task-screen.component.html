@@ -1,0 +1,50 @@
+<div class="container  mt-4">
+    <h2 class="bg-warning p-2 fw-bold text-center">Task App</h2>
+    <div class="row">
+        <div class="col-4  border-warning">
+            <div class="row">
+                <div class="col-7">
+                    <h3 class="fw-bold">Task List</h3>
+                </div>
+                <div class="col-5">
+                    <button type="button" class="btn btn-success" routerLink="/new-task-list" >New tasl List</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="list-group">
+                        <a [routerLink]="['/task-list',item._id]" routerLinkActive="active"
+                            *ngFor="let item of taskLists" class="list-group-item list-group-item-action"
+                            aria-current="true">
+                            {{item.title}}
+                            <span (click)="deleteTaskList(item)" class="badge bg-danger rounded-pill">X</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-8  border-warning">
+            <div class="row">
+                <div class="col-10">
+                    <h3 class="fw-bold">Linked Tasks</h3>
+                </div>
+                <div class="col-2">
+                    <button type="button" class="btn btn-success" (click)="addnewTaks()">New task</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <ul class="list-group">
+                        <li [class.mark-completed]="task.completed == true" *ngFor="let task of tasks"
+                            style="cursor: pointer;" (click)="taskClicked(task)"
+                            class="list-group-item d-flex justify-content-between align-items-center">
+                            {{task.title}}
+                            <span (click)="deleteTask(task)"  class="badge bg-danger rounded-pill">X</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
